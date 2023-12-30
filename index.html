@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors</title>
+    <!--<link rel="stylesheet" href="css/style.css">-->
+</head>
+<body>
+<h1>Rock Paper Scissors</h1>
+
+<button onclick="playGame()">Play</button>
+
+<p id="computerPlay">Computer play: </p>
+<p id="userPlay">You play: </p>
+<p id="winner">Winner: </p>
+
+<script>
+    function playGame() {
+        var userChoice = prompt('Do you choose rock, paper, or scissors?');
+
+        if (userChoice === null || userChoice === "") {
+            alert('Invalid choice. Please choose rock, paper, or scissors.');
+            return;
+        }
+        
+        document.getElementById('computerPlay').innerHTML = 'Computer play: ' + pickComputerMove();
+        document.getElementById('userPlay').innerHTML = 'You play: ' + userChoice;
+
+        var result = determineWinner(userChoice, computerChoice);
+
+        document.getElementById('winner').innerHTML = 'Winner: ' + result;
+    }
+
+    function pickComputerMove() {
+        var computerChoice = Math.random();
+
+        if (computerChoice < 0.34) {
+            return 'rock';
+        } else if (computerChoice <= 0.67) {
+            return 'paper';
+        } else {
+            return 'scissors';
+        }
+    }
+
+    function determineWinner(user, computer) {
+        if (user === computer) {
+            return 'It\'s a tie!';
+        } else if ((user === 'rock' && computer === 'scissors') ||
+            (user === 'paper' && computer === 'rock') ||
+            (user === 'scissors' && computer === 'paper')) {
+            return 'You win!';
+        } else {
+            return 'Computer wins!';
+        }
+    }
+</script>
+</body>
+</html>

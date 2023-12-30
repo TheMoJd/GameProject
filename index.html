@@ -18,23 +18,23 @@
 
 <script>
     function playGame() {
-        var userChoice = prompt('Do you choose rock, paper, or scissors?');
+        let userChoice = prompt('Do you choose rock, paper, or scissors?');
 
-        if (userChoice === null || userChoice === "") {
+        if (userChoice === null || userChoice === "" || (userChoice !== 'rock' && userChoice !== 'paper' && userChoice !== 'scissors')  ) {
             alert('Invalid choice. Please choose rock, paper, or scissors.');
             return;
         }
-        
-        document.getElementById('computerPlay').innerHTML = 'Computer play: ' + pickComputerMove();
+        let computerChoice = pickComputerMove();
+        document.getElementById('computerPlay').innerHTML = 'Computer play: ' + computerChoice;
         document.getElementById('userPlay').innerHTML = 'You play: ' + userChoice;
 
-        var result = determineWinner(userChoice, computerChoice);
+        let result = determineWinner(userChoice, computerChoice);
 
         document.getElementById('winner').innerHTML = 'Winner: ' + result;
     }
 
     function pickComputerMove() {
-        var computerChoice = Math.random();
+        let computerChoice = Math.random();
 
         if (computerChoice < 0.34) {
             return 'rock';
